@@ -1,1 +1,1 @@
-web: python3 goonies.py
+web: python3 app.py
