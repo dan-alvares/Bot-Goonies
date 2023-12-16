@@ -30,12 +30,13 @@ class MyClient(discord.Client):
 
         if self.report_id_atual == None or self.report_id_atual < novo_report_id:
             self.report_id_atual = novo_report_id
-            
+
             imagem_raid_atual, cor_raid_thumb, icon_url_check_mark = configuracao_mapa(self.mapa_atual, self.check_mark)            
 
             embed_goons = Embed(title='Goons Tracker', color=cor_raid_thumb)
             embed_goons.set_image(url=imagem_raid_atual)
-            embed_goons.add_field(name='Raid', value=self.mapa_atual, inline=False)
+            embed_goons.add_field(name='Alerta', value='<@1185288986281914409> alerta pra Boosters e VIPs', inline=True)
+            embed_goons.add_field(name='Raid', value=self.mapa_atual, inline=True)
             embed_goons.add_field(name='Data', value=self.data_atual, inline=True)
             embed_goons.add_field(name='Horário', value=f'{self.horario_atual} (horário de Brasília)', inline=True)            
             embed_goons.set_footer(text='Goonies: Goons Tracker do Tarkov Brasil', icon_url=icon_url_check_mark)
