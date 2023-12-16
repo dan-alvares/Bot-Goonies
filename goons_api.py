@@ -78,5 +78,5 @@ class Goonies():
                     self.report_id = tp_report_id
                     self.double_check_mark = False
         
-        return self.mapa_atual, self.data_atual, self.horario_atual, self.double_check_mark
+        return self.report_id, self.mapa_atual, self.data_atual, self.horario_atual, self.double_check_mark
                 
