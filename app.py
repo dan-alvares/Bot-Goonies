@@ -22,6 +22,12 @@ class MyClient(discord.Client):
         print(f'Logado como {self.user} (ID: {self.user.id})')
         print('------')
 
+    # mentioning
+    # User <@USER_ID>
+    # Role <@&ROLE_ID>
+    # Channel <#CHANNEL_ID>
+    # Emoji <:EMOJI_NAME:EMOJI_ID> <:mmLol:216154654256398347> // <a:nyancat:392938283556143104>
+
     @tasks.loop(seconds=600)  # Task é executada a cada 10 minutos
     async def my_background_task(self):
         channel = self.get_channel(1161828992102432808)  # ID do canal onde a msg será enviada ID do canal: 1161828992102432808
@@ -32,18 +38,19 @@ class MyClient(discord.Client):
             self.report_id_atual = novo_report_id
 
             imagem_raid_atual, cor_raid_thumb, icon_url_check_mark = configuracao_mapa(self.mapa_atual, self.check_mark)            
-
+            alerta_exclusivo = '<@&1185288986281914409> alerta exclusivo pra Nitro Boosters e VIPs'
             embed_goons = Embed(title='Goons Tracker', color=cor_raid_thumb)
             embed_goons.set_image(url=imagem_raid_atual)
             embed_goons.add_field(name='Raid', value=self.mapa_atual, inline=False)
             embed_goons.add_field(name='Data', value=self.data_atual, inline=True)
             embed_goons.add_field(name='Horário', value=f'{self.horario_atual} (horário de Brasília)', inline=True)            
-            embed_goons.add_field(name='Alerta', value='<@&1185288986281914409> alerta exclusivo pra Nitro Boosters e VIPs', inline=False)
+            # embed_goons.add_field(name='Alerta', value='<@&1185288986281914409> alerta exclusivo pra Nitro Boosters e VIPs', inline=False)
             embed_goons.set_footer(text='Goonies: Goons Tracker do Tarkov Brasil', icon_url=icon_url_check_mark)
             print(f'{self.mapa_atual} - {self.data_atual} - {self.horario_atual} - {self.check_mark}')
             
             # envia a mensagem no canal com o mapa atual dos goons
-            await channel.send(embed=embed_goons, allowed_mentions=discord.AllowedMentions(roles=True))       
+            await channel.send(alerta_exclusivo, allowed_mentions=discord.AllowedMentions(roles=True))
+            await channel.send(embed=embed_goons)       
         
     @my_background_task.before_loop
     async def before_my_task(self):
