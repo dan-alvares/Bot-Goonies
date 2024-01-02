@@ -49,7 +49,7 @@ class MyClient(discord.Client):
             print(f'{self.mapa_atual} - {self.data_atual} - {self.horario_atual} - {self.check_mark}')
             
             # envia a mensagem no canal com o mapa atual dos goons
-            await channel.send(alerta_exclusivo)
+            await channel.send(alerta_exclusivo, allowed_mentions=discord.AllowedMentions(roles=True))
             await channel.send(embed=embed_goons)       
         
     @my_background_task.before_loop
