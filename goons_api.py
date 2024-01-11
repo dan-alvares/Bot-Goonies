@@ -55,7 +55,8 @@ class Goonies():
             requests.post('https://ntfy.sh/goonies-tarkovbr', data=f'Atualização localização error: {e}'.encode(encoding='utf-8'))
             
         else:
-            tp_report_id, tp_mapa, tp_data, tp_hora, tp_data_hora = atualiza_localizacao_goons
+            if atualiza_localizacao_goons is not None:
+                tp_report_id, tp_mapa, tp_data, tp_hora, tp_data_hora = atualiza_localizacao_goons
 
             # unpack de dados raspados do goon tracker
             gt_mapa, _, _, gt_data_hora = scrape_goons()            
@@ -65,7 +66,7 @@ class Goonies():
                 # caso o intervalo de tempo entre os reports seja menor que 30 minutos, atualiza as infos com double check
                 # caso contrário retorna single check e assume valor do tarkovpal para publicação no discord
                 intervalo_de_tempo = time_delta(tp_data_hora, gt_data_hora)
-                if tp_mapa == gt_mapa and intervalo_de_tempo < 30:
+                if tp_mapa == gt_mapa and intervalo_de_tempo < 90:
                     self.mapa_atual = tp_mapa
                     self.data_atual = tp_data
                     self.horario_atual = tp_hora
