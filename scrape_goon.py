@@ -89,9 +89,9 @@ def configuracao_mapa(mapa_atual, check_mark):
     
     if check_mark == True:
         # retorna double check para construir a embed
-        icon_url_check_mark = 'https://cdn.discordapp.com/attachments/1166543939898195979/1185313390332223569/double-check.png?ex=658f281e&is=657cb31e&hm=0d308e16130d164b1cf8c28c215bfbd829ef90d0e65480b8db955bfaf396c48b&'
+        icon_url_check_mark = 'https://cdn.discordapp.com/attachments/1166543939898195979/1195360998115262616/double-check_v2.png?ex=65b3b5ae&is=65a140ae&hm=db17b6a3cf2df96fd8291f7ef6aa6bb914cc8f77d4e767ad2e384c82267fa34f&'
     else:
         # retorno single check para construir a embed
-        icon_url_check_mark = 'https://cdn.discordapp.com/attachments/1166543939898195979/1185313391120760922/single-check.png?ex=658f281e&is=657cb31e&hm=9d859227774b10f923a53ac7ce6f25530a7af02581fe1cef899a0c27edc9a485&'
+        icon_url_check_mark = 'https://media.discordapp.net/attachments/1166543939898195979/1195360998404673646/single-check_v2.png?ex=65b3b5ae&is=65a140ae&hm=d7c9eb1fe565ee7a8c5b3b28a7cfb6b17ad72c0e4876b2026ed2c277a5312d94&=&format=webp&quality=lossless'
 
     return imagem_thumb, cor_thumb, icon_url_check_mark

@@ -38,7 +38,7 @@ class MyClient(discord.Client):
             self.report_id_atual = novo_report_id
 
             imagem_raid_atual, cor_raid_thumb, icon_url_check_mark = configuracao_mapa(self.mapa_atual, self.check_mark)            
-            alerta_exclusivo = '<:goons_tracker:1185796465260515419><@&1185288986281914409> alerta exclusivo pra Nitro Boosters e VIPs'
+            alerta_exclusivo = '<:goons_tracker:1185796465260515419>  <@&1185288986281914409> alerta exclusivo pra Nitro Boosters e VIPs'
             embed_goons = Embed(title='Goons Tracker', color=cor_raid_thumb)
             embed_goons.set_image(url=imagem_raid_atual)
             embed_goons.set_thumbnail(url=icon_url_check_mark)
