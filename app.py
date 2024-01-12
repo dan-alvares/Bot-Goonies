@@ -38,14 +38,15 @@ class MyClient(discord.Client):
             self.report_id_atual = novo_report_id
 
             imagem_raid_atual, cor_raid_thumb, icon_url_check_mark = configuracao_mapa(self.mapa_atual, self.check_mark)            
-            alerta_exclusivo = '<@&1185288986281914409> alerta exclusivo pra Nitro Boosters e VIPs'
+            alerta_exclusivo = '<:goons_tracker:1185796465260515419><@&1185288986281914409> alerta exclusivo pra Nitro Boosters e VIPs'
             embed_goons = Embed(title='Goons Tracker', color=cor_raid_thumb)
             embed_goons.set_image(url=imagem_raid_atual)
+            embed_goons.set_thumbnail(url=icon_url_check_mark)
             embed_goons.add_field(name='Raid', value=self.mapa_atual, inline=False)
             embed_goons.add_field(name='Data', value=self.data_atual, inline=True)
             embed_goons.add_field(name='Horário', value=f'{self.horario_atual} (horário de Brasília)', inline=True)            
             # embed_goons.add_field(name='Alerta', value='<@&1185288986281914409> alerta exclusivo pra Nitro Boosters e VIPs', inline=False)
-            embed_goons.set_footer(text='Goonies: Goons Tracker do Tarkov Brasil', icon_url=icon_url_check_mark)
+            embed_goons.set_footer(text='Goonies: Goons Tracker do Tarkov Brasil', icon_url='https://cdn.discordapp.com/attachments/1166543939898195979/1166544051219210260/EFT-BR_LOGO_2.png?ex=6594b3cf&is=65823ecf&hm=cdecede7f33b0164c5f56e659f8600e5745d7cec9b80cabad7020cbeec467b6f&')
             print(f'{self.mapa_atual} - {self.data_atual} - {self.horario_atual} - {self.check_mark}')
             
             # envia a mensagem no canal com o mapa atual dos goons
