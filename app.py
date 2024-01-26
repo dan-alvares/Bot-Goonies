@@ -28,7 +28,7 @@ class MyClient(discord.Client):
     # Channel <#CHANNEL_ID>
     # Emoji <:EMOJI_NAME:EMOJI_ID> <:mmLol:216154654256398347> // <a:nyancat:392938283556143104>
 
-    @tasks.loop(seconds=600)  # Task é executada a cada 10 minutos
+    @tasks.loop(seconds=1200)  # Task é executada a cada X segundos
     async def my_background_task(self):
         channel = self.get_channel(1161828992102432808)  # ID do canal onde a msg será enviada ID do canal: 1161828992102432808
         goonies = Goonies()
