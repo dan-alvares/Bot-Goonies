@@ -51,15 +51,15 @@ class Goonies():
         try:
             atualiza_localizacao_goons = self.request_goons_info()
                 
-        except requests.exceptions.RequestsException as e:
-            requests.post('https://ntfy.sh/goonies-tarkovbr', data=f'Atualização localização error: {e}'.encode(encoding='utf-8'))
+        except Exception as e:
+            requests.post('https://ntfy.sh/goonies-tarkovbr', data=f'Erro na atualização sobre info dos Goons: {e}'.encode(encoding='utf-8'))
             
         else:
             if atualiza_localizacao_goons is not None:
                 tp_report_id, tp_mapa, tp_data, tp_hora, tp_data_hora = atualiza_localizacao_goons
 
             # unpack de dados raspados do goon tracker
-            gt_mapa, _, _, gt_data_hora = scrape_goons()            
+            gt_mapa, _, _, gt_data_hora = scrape_goons()  
             
             # verifica o último report id do tarkovpal e compara com o report id já armazenado
             if self.report_id == None or tp_report_id > self.report_id:

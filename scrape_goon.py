@@ -12,28 +12,40 @@ def scrape_goons():
         soup = bs(request_conteudo.content, 'html.parser')
         
         # pega todas as tags td da tabela
-        tabela = soup.find_all('td') 
+        tabela = soup.find_all('td', attrs={'class': 's0'}) 
 
-        # pega o mapa atual
-        mapa_atual = tabela[2].text
+        if len(tabela) == 4:
+            # pega o mapa atual
+            mapa_atual = tabela[2].text
 
-        # pega o horario dos goons
-        data_horario_goons = tabela[3].text 
-        formato_data_horario = '%m/%d/%Y %H:%M:%S'
+            # pega o horario dos goons
+            data_horario_goons = tabela[3].text 
+            formato_data_horario = '%m/%d/%Y %H:%M:%S'
 
-        # define timezones
-        edt = timezone('US/Eastern')
-        gmt_brasil = timezone('America/Sao_Paulo')
+            # define timezones
+            edt = timezone('US/Eastern')
+            gmt_brasil = timezone('America/Sao_Paulo')
 
-        # localiza timezone
-        data_hora_edt = edt.localize(datetime.strptime(data_horario_goons, formato_data_horario))        
+            # localiza timezone
+            data_hora_edt = edt.localize(datetime.strptime(data_horario_goons, formato_data_horario))        
 
-        # converte horário EDT para GMT-3
-        data_hora_brasil = data_hora_edt.astimezone(gmt_brasil)
+            # converte horário EDT para GMT-3
+            data_hora_brasil = data_hora_edt.astimezone(gmt_brasil)
 
-        # data_hora_gmt_brasil.strftime('%d/%m/%Y %H:%M:%S') 
-        data_atual = data_hora_brasil.strftime('%d/%m/%Y') 
-        horario_atual = data_hora_brasil.strftime('%H:%M %p')
+            # data_hora_gmt_brasil.strftime('%d/%m/%Y %H:%M:%S') 
+            data_atual = data_hora_brasil.strftime('%d/%m/%Y') 
+            horario_atual = data_hora_brasil.strftime('%H:%M %p')
+        else:
+            raise IndexError(f'Erro ao obter dados da tabela')
+    
+    except IndexError as e:
+        print(e)
+        requests.post('https://ntfy.sh/goonies-tarkovbr', data=f'Scraping error: {e}'.encode(encoding='utf-8'))
+        mapa_atual = None
+        data_atual = None
+        horario_atual = None
+        data_hora_brasil = None
+        return mapa_atual, data_atual, horario_atual, data_hora_brasil
 
     except requests.exceptions.RequestException as e:
         print(e)
