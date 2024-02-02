@@ -59,25 +59,31 @@ class Goonies():
                 tp_report_id, tp_mapa, tp_data, tp_hora, tp_data_hora = atualiza_localizacao_goons
 
             # unpack de dados raspados do goon tracker
-            gt_mapa, _, _, gt_data_hora = scrape_goons()  
-            
-            # verifica o último report id do tarkovpal e compara com o report id já armazenado
-            if self.report_id == None or tp_report_id > self.report_id:
-                # caso o intervalo de tempo entre os reports seja menor que 30 minutos, atualiza as infos com double check
-                # caso contrário retorna single check e assume valor do tarkovpal para publicação no discord
-                intervalo_de_tempo = time_delta(tp_data_hora, gt_data_hora)
-                if tp_mapa == gt_mapa and intervalo_de_tempo < 90:
-                    self.mapa_atual = tp_mapa
-                    self.data_atual = tp_data
-                    self.horario_atual = tp_hora
-                    self.report_id = tp_report_id
-                    self.double_check_mark = True
-                else:
-                    self.mapa_atual = tp_mapa
-                    self.data_atual = tp_data
-                    self.horario_atual = tp_hora
-                    self.report_id = tp_report_id
-                    self.double_check_mark = False
+            gt_mapa, _, _, gt_data_hora = scrape_goons()
+            if gt_mapa is not None:            
+                # verifica o último report id do tarkovpal e compara com o report id já armazenado
+                if self.report_id == None or tp_report_id > self.report_id:
+                    # caso o intervalo de tempo entre os reports seja menor que 30 minutos, atualiza as infos com double check
+                    # caso contrário retorna single check e assume valor do tarkovpal para publicação no discord
+                    intervalo_de_tempo = time_delta(tp_data_hora, gt_data_hora)
+                    if tp_mapa == gt_mapa and intervalo_de_tempo < 90:
+                        self.mapa_atual = tp_mapa
+                        self.data_atual = tp_data
+                        self.horario_atual = tp_hora
+                        self.report_id = tp_report_id
+                        self.double_check_mark = True
+                    else:
+                        self.mapa_atual = tp_mapa
+                        self.data_atual = tp_data
+                        self.horario_atual = tp_hora
+                        self.report_id = tp_report_id
+                        self.double_check_mark = False
+            else:
+                self.mapa_atual = tp_mapa
+                self.data_atual = tp_data
+                self.horario_atual = tp_hora
+                self.report_id = tp_report_id
+                self.double_check_mark = False
         
         return self.report_id, self.mapa_atual, self.data_atual, self.horario_atual, self.double_check_mark
                 
