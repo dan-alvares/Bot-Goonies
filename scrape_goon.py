@@ -5,7 +5,7 @@ from pytz import timezone
 
 
 def scrape_goons():
-    link_tabela = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vRwLysnh2Tf7h2yHBc_bpZLQh6DiFZtDqyhHLYP022xolQUPUHkSModV31E5Y7cLh_8LZGexpXy2VuH/pubhtml/sheet?headers=false&gid=1420050773' # tabela do google sheets com info 
+    link_tabela = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vR-wIQI351UH85ILq5KiCLMMrl0uHRmjDinBCt6nXGg5exeuCxQUf8DTLJkwn7Ckr8-HmLyEIoapBE5/pubhtml/sheet?headers=false&gid=1420050773' # tabela do google sheets com info 
 
     try:
         request_conteudo = requests.get(link_tabela)
