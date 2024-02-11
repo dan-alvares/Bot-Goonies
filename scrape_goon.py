@@ -16,10 +16,10 @@ def scrape_goons():
 
         if len(tabela) == 4:
             # pega o mapa atual
-            mapa_atual = tabela[2].text
+            mapa_atual = tabela[1].text
 
             # pega o horario dos goons
-            data_horario_goons = tabela[3].text 
+            data_horario_goons = tabela[2].text 
             formato_data_horario = '%m/%d/%Y %H:%M:%S'
 
             # define timezones
