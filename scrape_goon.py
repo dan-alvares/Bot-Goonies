@@ -16,7 +16,7 @@ def scrape_goons():
 
         if len(tabela) == 4:
             # pega o mapa atual
-            mapa_atual = tabela[1].text
+            mapa_atual = tabela[-1].text
 
             # pega o horario dos goons
             data_horario_goons = tabela[2].text 
