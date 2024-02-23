@@ -18,7 +18,6 @@ class Goonies():
         """
 
         tarkovpal_api = 'https://tarkovpal.com/api'
-
         datetime_fmt = "%B %d, %Y, %I:%M %p"
 
         try:
@@ -66,7 +65,7 @@ class Goonies():
                     # caso o intervalo de tempo entre os reports seja menor que 30 minutos, atualiza as infos com double check
                     # caso contrário retorna single check e assume valor do tarkovpal para publicação no discord
                     intervalo_de_tempo = time_delta(tp_data_hora, gt_data_hora)
-                    if tp_mapa == gt_mapa and intervalo_de_tempo < 90:
+                    if tp_mapa == gt_mapa and intervalo_de_tempo < 60:
                         self.mapa_atual = tp_mapa
                         self.data_atual = tp_data
                         self.horario_atual = tp_hora

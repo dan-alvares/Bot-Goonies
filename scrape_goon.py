@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as bs
 from datetime import datetime
 from pytz import timezone
 
-
 def scrape_goons():
     link_tabela = 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vR-wIQI351UH85ILq5KiCLMMrl0uHRmjDinBCt6nXGg5exeuCxQUf8DTLJkwn7Ckr8-HmLyEIoapBE5/pubhtml/sheet?headers=false&gid=1420050773' # tabela do google sheets com info 
 
